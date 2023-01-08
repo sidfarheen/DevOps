@@ -95,5 +95,8 @@ jobs:
         path: ${{env.file_name}}
 	  # End sonar qube analysis  
     - name: End sonar
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      shell: powershell
       run:  .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
  
